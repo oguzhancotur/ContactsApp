@@ -17,6 +17,14 @@ class ContactsMain extends StatefulWidget {
 }
 
 class _ContactsMainState extends State<ContactsMain> {
+  String _searchTerm = '';
+
+  void _filterContacts(String query) {
+    setState(() {
+      _searchTerm = query.toLowerCase();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +79,7 @@ class _ContactsMainState extends State<ContactsMain> {
               width: MediaQuery.of(context).size.width * 0.92,
               height: MediaQuery.of(context).size.height * 0.045,
               child: TextField(
+                onChanged: _filterContacts,
                 decoration: InputDecoration(
                   fillColor: ConstantColor.white,
                   filled: true,
@@ -176,13 +185,20 @@ class _ContactsMainState extends State<ContactsMain> {
                       itemCount: state.userList.length,
                       itemBuilder: (context, index) {
                         final user = state.userList[index];
-                        return ContactsCard(
-                          id: user.id!,
-                          firstName: user.firstName!,
-                          lastName: user.lastName!,
-                          number: user.phoneNumber!,
-                          image: user.profileImageUrl!,
-                        );
+                        if (_searchTerm.isEmpty ||
+                            user.firstName!
+                                .toLowerCase()
+                                .contains(_searchTerm)) {
+                          return ContactsCard(
+                            id: user.id!,
+                            firstName: user.firstName!,
+                            lastName: user.lastName!,
+                            number: user.phoneNumber!,
+                            image: user.profileImageUrl!,
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
                       },
                     );
                   }
