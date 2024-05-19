@@ -98,18 +98,7 @@ class _ContactsProfileState extends State<ContactsProfile> {
                   color: ConstantColor.black,
                 ),
               ),
-              onTap: () {
-                showModalBottomSheet(
-                  isDismissible: false,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const Center();
-                  },
-                );
-              },
+              onTap: () {},
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Container(

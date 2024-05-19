@@ -15,5 +15,9 @@ class UploadImageBloc extends Bloc<UploadImageEvent, UploadImageState> {
         emit(UploadImageError());
       }
     });
+
+    on<UploadImageReset>((event, emit) async {
+      emit(UploadImageInitial());
+    });
   }
 }

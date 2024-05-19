@@ -97,6 +97,7 @@ class _NewContactState extends State<NewContact> {
                             phoneNumber: _phoneNumberController.text,
                             imagePath: _imageUrl!,
                           ));
+                      context.read<UploadImageBloc>().add(UploadImageReset());
                       context.read<UserBloc>().add(ResetEvent());
                       Navigator.pop(context);
 
@@ -189,6 +190,7 @@ class _NewContactState extends State<NewContact> {
                                           0.06))),
                               onPressed: () {
                                 _pickImage(ImageSource.camera);
+                                Navigator.pop(context);
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

@@ -6,3 +6,5 @@ class UploadImage extends UploadImageEvent {
     required this.imagePath,
   });
 }
+
+class UploadImageReset extends UploadImageEvent {}
